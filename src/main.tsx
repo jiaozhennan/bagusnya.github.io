@@ -1,6 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, HashRouter } from "react-router-dom";
 import { Toaster } from 'sonner';
 import App from "./App.tsx";
 import "./index.css";
@@ -18,11 +18,12 @@ const resources = {
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <BrowserRouter>
+     {/* 对于GitHub Pages部署，使用HashRouter替代BrowserRouter以避免404问题 */}
+       <HashRouter basename={process.env.NODE_ENV === 'production' ? '/bagusnya.github.io' : '/'}>
       <LanguageProvider resources={resources}>
         <App />
         <Toaster />
       </LanguageProvider>
-    </BrowserRouter>
+    </HashRouter>
   </StrictMode>
 );

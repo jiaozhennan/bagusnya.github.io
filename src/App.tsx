@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "@/pages/Home";
 import { useState } from "react";
 import { AuthContext } from '@/contexts/authContext';
@@ -14,10 +14,12 @@ export default function App() {
     <AuthContext.Provider
       value={{ isAuthenticated, setIsAuthenticated, logout }}
     >
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/other" element={<div className="text-center text-xl">Other Page - Coming Soon</div>} />
-      </Routes>
+       <Routes>
+         <Route path="/" element={<Home />} />
+         <Route path="/other" element={<div className="text-center text-xl">Other Page - Coming Soon</div>} />
+         {/* 添加404重定向 */}
+         <Route path="*" element={<Navigate to="/" replace />} />
+       </Routes>
     </AuthContext.Provider>
   );
 }

@@ -7,8 +7,9 @@ import InquiryForm from '@/components/InquiryForm';
 import Footer from '@/components/Footer';
 
 export default function Home() {
+  // 添加内联样式确保页面至少占满屏幕高度
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className="min-h-screen bg-gray-50 flex flex-col" style={{ minHeight: '100vh' }}>
       <Header />
       <main className="flex-grow">
         <Hero />
